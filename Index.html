@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Krishna 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    header {
+      padding: 40px 20px;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #fff;
+      background: rgba(0,0,0,0.3);
+      border-bottom: 4px solid #fff;
+    }
+    .message {
+      margin: 30px auto;
+      max-width: 800px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .slideshow-container {
+      max-width: 600px;
+      position: relative;
+      margin: 40px auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    .slides {
+      display: none;
+      width: 100%;
+    }
+    img {
+      width: 100%;
+      border-radius: 15px;
+    }
+    .dots {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 4px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+    .active {
+      background-color: #717171;
+    }
+    footer {
+      margin: 30px;
+      font-size: 1rem;
+      color: #fff;
+    }
+    /* Confetti */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <header>Happy Birthday Krishna 🎂✨</header>
+  <div class="message">
+    <p>Hey Krishna (meri jaan, mera bachha) ❤️<br><br>
+    Aaj ka din bahut special hai kyunki tumhara birthday hai. Shreya tumse kehna chahti hai ki tum uske liye sabse important insaan ho. Tumhare bina life adhoori lagti hai, aur tumhare saath har pal ek nayi kahani ban jata hai. 💕<br><br>
+    Mujhe yaad hai humare funny video calls, woh silly screenshots aur tumhari cute baatein. Tum mere liye hamesha free rehte ho (baaki sabke liye busy 😜) aur yeh feeling mujhe bohot special lagti hai.<br><br>
+    Is baar mere paas tumhe gift dene ke liye savings nahi hai, but gift sab dete hain… main tumhe yeh special message aur yeh website de rahi hoon jisse tumhe hamesha yaad rahe ki Shreya tumse kitna pyaar karti hai. 💗<br><br>
+    Tum meri duniya ho Krishna, aur main promise karti hoon ki hamesha tumhare saath rahungi — love, laughter aur adventures ke saath. Happy Birthday meri jaan! 🎉🎂
+    </p>
+  </div>
+
+  <!-- Slideshow -->
+  <div class="slideshow-container">
+    <div class="slides fade"><img src="photo1.jpg" alt="pic1"></div>
+    <div class="slides fade"><img src="photo2.jpg" alt="pic2"></div>
+    <div class="slides fade"><img src="photo3.jpg" alt="pic3"></div>
+    <div class="slides fade"><img src="photo4.jpg" alt="pic4"></div>
+    <div class="slides fade"><img src="photo5.jpg" alt="pic5"></div>
+    <div class="slides fade"><img src="photo6.jpg" alt="pic6"></div>
+    <div class="slides fade"><img src="photo7.jpg" alt="pic7"></div>
+    <div class="slides fade"><img src="photo8.jpg" alt="pic8"></div>
+    <div class="slides fade"><img src="photo9.jpg" alt="pic9"></div>
+  </div>
+  <div class="dots">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </div>
+
+  <footer>Made with ❤️ by Shreya for Krishna</footer>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti"></canvas>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Slideshow
+    let slideIndex = 0;
+    showSlides();
+    function showSlides() {
+      let i;
+      let slides = document.getElementsByClassName("slides");
+      let dots = document.getElementsByClassName("dot");
+      for (i = 0; i < slides.length; i++) slides[i].style.display = "none";
+      slideIndex++;
+      if (slideIndex > slides.length) slideIndex = 1;
+      for (i = 0; i < dots.length; i++) dots[i].className = dots[i].className.replace(" active", "");
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+      setTimeout(showSlides, 2500);
+    }
+
+    // Confetti
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const confettiCount = 150;
+    const confetti = [];
+    for (let i = 0; i < confettiCount; i++) {
+      confetti.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * confettiCount,
+        color: "hsl(" + Math.random() * 360 + ",100%,50%)",
+        tilt: Math.floor(Math.random() * 10) - 10
+      });
+    }
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < confettiCount; i++) {
+        let c = confetti[i];
+        ctx.beginPath();
+        ctx.lineWidth = c.r / 2;
+        ctx.strokeStyle = c.color;
+        ctx.moveTo(c.x + c.tilt + c.r / 4, c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 4);
+        ctx.stroke();
+      }
+      updateConfetti();
+    }
+    function updateConfetti() {
+      for (let i = 0; i < confettiCount; i++) {
+        let c = confetti[i];
+        c.y += Math.cos(c.d) + 1 + c.r / 2;
+        c.x += Math.sin(0.5) * 2;
+        if (c.y > canvas.height) {
+          confetti[i] = {
+            x: Math.random() * canvas.width,
+            y: -10,
+            r: c.r,
+            d: c.d,
+            color: c.color,
+            tilt: c.tilt
+          };
+        }
+      }
+    }
+    setInterval(drawConfetti, 20);
+  </script>
+</body>
+</html>![1000028455](https://github.com/user-attachments/assets/65ade7db-ff83-4952-8cb7-d07f00ae6609)
+![1000028462](https://github.com/user-attachments/assets/234ed2e9-b60d-48e3-962f-1edf0435577c)
+![1000028461](https://github.com/user-attachments/assets/7dcf86f3-b5c9-4a5e-ace8-de48876d36df)
+![1000028460](https://github.com/user-attachments/assets/1c11ff52-286a-4019-a09f-41dabba6c4ea)
+![1000028459](https://github.com/user-attachments/assets/c0588e6a-35ec-414d-aec9-d7d623428605)
+![1000028458](https://github.com/user-attachments/assets/0f928c1c-9892-4a29-8c21-08b7fc7cc224)
+![1000028456](https://github.com/user-attachments/assets/43aab167-fa6a-4eec-9fd2-262b58512ab1)
+![1000028464](https://github.com/user-attachments/assets/d0d15017-4e74-4e77-9a7d-b3889dae70f7)
+![1000028463](https://github.com/user-attachments/assets/f278103f-deed-4a6b-9232-ca5de0885202)
